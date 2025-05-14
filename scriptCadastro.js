@@ -34,7 +34,8 @@ function consulta() {
 
   competicoes.forEach((competicao) => {
     let item = document.createElement("li");
-    item.innerHTML = `<b>${competicao.nome}</b> - ${competicao.data} - ${competicao.modalidade} <br> <button class="editar" data-id="${index}">editar</button> <br>`;
+    let index = competicoes.indexOf(competicao);
+    item.innerHTML = `<b>${competicao.nome}</b> - ${competicao.data} - ${competicao.modalidade} <br> <button class="editar" id="${index}">editar</button> <br>`;
     resultado.appendChild(item);
   });
 
@@ -51,21 +52,22 @@ let consultaBotao = document
 
 function edicao() {
   let caixa = document.getElementById("editar_competicao");
+
   caixa.showModal();
 
-  let index = (indiceEdicao = event.target.getAttribute("data-id"));
+  let recadNome = document.getElementById("id_recad_competicao").value;
+  let recadData = document.getElementById("id_recad_data").value;
+  let recadModalidade = document.getElementById("id_recad_modalidades").value;
 
-  let nome = document.getElementById("id_recad_competicao").value;
-  let data = document.getElementById("id_recad_data").value;
-  let modalidade = document.getElementById("id_recad_modalidades").value;
+  if (recadNome != null) {
+    competicoes[index].nome = recadNome;
+  }
 
-  let update = document.getElementById("subir_mudancas");
+  if (recadData != null) {
+    competicoes[index].data = recadData;
+  }
 
-  update.addEventListener("click", (e) => {
-    competicoes[index].nome = nome;
-    competicoes[index].data = data;
-    competicoes[index].modalidade = modalidade;
-
-    localStorage.setItem("competições", JSON.stringify(competicoes));
-  });
+  if (recadModalidade != null) {
+    competicoes[index].modalidade = recadModalidade;
+  }
 }
