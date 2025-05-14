@@ -1,66 +1,71 @@
-import Aluno from "./classes/aluno.js";
-import Competicao from "./classes/competicao.js";
+import Competicao from "./competicao.js";
 
 let competicoes = JSON.parse(localStorage.getItem("competições")) || [];
 
 let formCompeticao = document.getElementById("formulario_competicao");
 
 formCompeticao.addEventListener("submit", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    let competicao = new Competicao();
+  let competicao = new Competicao();
 
-    competicao.setNomeC(document.getElementById("id_nome").value);
-    competicao.setDataC(document.getElementById("id_data").value);
-    competicao.setModalidadeC(document.getElementById("id_modalidades").value);
+  competicao.setNome(document.getElementById("id_competicao").value);
+  competicao.setData(document.getElementById("id_data").value);
+  competicao.setModalidade(document.getElementById("id_modalidades").value);
 
-    competicoes.push({
-        nome: competicao.getNomeC(),
-        data: competicao.getDataC(),
-        modalidade: competicao.getModalidadeC(),
-        alunos: competicao.getAlunosCadastrados()  
-    });
+  competicoes.push({
+    nome: competicao.getNome(),
+    data: competicao.getData(),
+    modalidade: competicao.getModalidade(),
+  });
 
-    localStorage.setItem("nome", competicao.getNomeC());
-    localStorage.setItem("data", competicao.getDataC());
-    localStorage.setItem("modalidade", competicao.getModalidadeC());
+  localStorage.setItem("nome", competicao.getNome());
+  localStorage.setItem("data", competicao.getData());
+  localStorage.setItem("modalidade", competicao.getModalidade());
 
-    localStorage.setItem("competições", JSON.stringify(competicoes));
-    formCompeticao.reset();
-
+  localStorage.setItem("competições", JSON.stringify(competicoes));
+  formCompeticao.reset();
 });
 
-let formAluno = document.getElementById("formulario_aluno");
+let resultado = document.getElementById("resultado_consulta_competicao");
 
-formAluno.addEventListener("submit", (e) => {
-    e.preventDefault();
+function consulta() {
+  resultado.innerHTML = "";
 
-    if (competicoes.length === 0) {
-        alert(`você precisa ter, pelo menos, uma competição cadastrada para inscrever um aluno`)
-    } else {
+  competicoes.forEach((competicao) => {
+    let item = document.createElement("li");
+    item.innerHTML = `<b>${competicao.nome}</b> - ${competicao.data} - ${competicao.modalidade} <br> <button class="editar" data-id="${index}">editar</button> <br>`;
+    resultado.appendChild(item);
+  });
 
-        let aluno = new Aluno ();
+  let botoesEditar = document.getElementsByClassName("editar");
 
-        aluno.setNome(document.getElementById("id_aluno").value);
-        aluno.setTurma(document.querySelector('input[name=turma]:checked').value);
-        aluno.setCurso(document.querySelector('input[name=curso]:checked').value);
-        
-        let competicaoInscrita = document.getElementById("id_competicaoInscrita").value;
+  for (let botao of botoesEditar) {
+    botao.addEventListener("click", edicao);
+  }
+}
 
-        let competicaoSelecionada = competicoes.find(competicao => competicao.getNomeC() === competicaoInscrita);
+let consultaBotao = document
+  .getElementById("id_consulta_competicao")
+  .addEventListener("click", consulta);
 
-        if (competicaoSelecionada) {
-            competicaoInscrita.addAluno(aluno);
-            localStorage.setItem("competições", JSON.stringify(competicoes));
-        } else {
-            alert(`verifique se digitou uma competição válida`)
-        }
+function edicao() {
+  let caixa = document.getElementById("editar_competicao");
+  caixa.showModal();
 
+  let index = (indiceEdicao = event.target.getAttribute("data-id"));
 
-    }
+  let nome = document.getElementById("id_recad_competicao").value;
+  let data = document.getElementById("id_recad_data").value;
+  let modalidade = document.getElementById("id_recad_modalidades").value;
 
-    formAluno.reset();
+  let update = document.getElementById("subir_mudancas");
 
-})
+  update.addEventListener("click", (e) => {
+    competicoes[index].nome = nome;
+    competicoes[index].data = data;
+    competicoes[index].modalidade = modalidade;
 
-
+    localStorage.setItem("competições", JSON.stringify(competicoes));
+  });
+}
