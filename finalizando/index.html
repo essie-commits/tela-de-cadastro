@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tela de login</title>
+  </head>
+  <body>
+    <form id="login">
+      <fieldset>
+        <legend>login</legend>
+
+        <p>Bem-vindo, usuário(a)!</p>
+
+        <label for="id_email">
+          <input
+            type="email"
+            name="email"
+            id="id_email"
+            minlength="5"
+            placeholder="insira seu e-mail"
+            pattern="+@admin\.com"
+            required
+          />
+        </label>
+
+        <label for="id_senha">
+          <input
+            type="password"
+            name="senha"
+            id="id_senha"
+            minlength="5"
+            placeholder="insira sua senha"
+            required
+          />
+        </label>
+
+        <button type="submit" name="login" id="id_login" class="envio">
+          entrar
+        </button>
+        <button type="reset" name="limpar" id="id_limpar" class="limpeza">
+          limpar
+        </button>
+      </fieldset>
+    </form>
+  </body>
+</html>

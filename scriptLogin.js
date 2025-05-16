@@ -5,24 +5,20 @@ let dialog = document.getElementById("confirmacao");
 
 let confirmSenha = document.getElementById("id_confirmacao");
 
-formulario.addEventListener("submit", e => {
-    e.preventDefault();
+let email = document.getElementById("id_email");
 
-    dialog.showModal();
+formulario.addEventListener("submit", (e) => {
+  e.preventDefault();
 
+  dialog.showModal();
 
-});
+  let reenvio = document.getElementById("id_reenvio");
 
-let reenvio = document.getElementById("id_reenvio");
-
-reenvio.addEventListener("click", e => {
+  reenvio.addEventListener("click", (e) => {
     e.preventDefault();
 
     if (confirmSenha.value === senha.value) {
-        window.location.href = "cadastro.html"
-    } else (
-        alert(`senha incorreta`)
-    )
-})
-
-// funcionando...
+      window.location.href = "cadastro.html";
+    } else alert(`senha incorreta`);
+  });
+});

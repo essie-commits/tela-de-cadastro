@@ -29,6 +29,12 @@ formCompeticao.addEventListener("submit", (e) => {
 
 let resultado = document.getElementById("resultado_consulta_competicao");
 
+let consultando = document.getElementById("id_consulta_competicao");
+
+consultando.addEventListener("submit", (e) => {
+  consulta();
+});
+
 function consulta() {
   resultado.innerHTML = "";
 
@@ -42,32 +48,12 @@ function consulta() {
   let botoesEditar = document.getElementsByClassName("editar");
 
   for (let botao of botoesEditar) {
-    botao.addEventListener("click", edicao);
-  }
-}
+    botao.addEventListener("click", (e) => {
+      let caixa = document.getElementById("editar_competicao");
 
-let consultaBotao = document
-  .getElementById("id_consulta_competicao")
-  .addEventListener("click", consulta);
+      caixa.showModal();
 
-function edicao() {
-  let caixa = document.getElementById("editar_competicao");
-
-  caixa.showModal();
-
-  let recadNome = document.getElementById("id_recad_competicao").value;
-  let recadData = document.getElementById("id_recad_data").value;
-  let recadModalidade = document.getElementById("id_recad_modalidades").value;
-
-  if (recadNome != null) {
-    competicoes[index].nome = recadNome;
-  }
-
-  if (recadData != null) {
-    competicoes[index].data = recadData;
-  }
-
-  if (recadModalidade != null) {
-    competicoes[index].modalidade = recadModalidade;
+      let index = parseInt(e.target.id);
+    });
   }
 }

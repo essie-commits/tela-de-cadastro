@@ -1,142 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tela de cadastro</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>tela de cadastro</title>
 <link rel="stylesheet" href="cadastro.css">
 </head>
 <body>
-    <form id="formulario_competicao">
-        <fieldset>
-
-            <legend>registro de torneios</legend>
-
-            <label for="id_competicao">
-                <input 
-                type="text" 
-                name="competicao" 
-                id="id_competicao"
-                minlength="2"
-                required
-                >
-            </label>
-
-            <label for="id_data">
-                <input 
-                type="date"
-                name="data"
-                id="id_data"
-                min="01-01-2000"
-                max="01-01-2100"
-                required
-                >
-            </label>
-
-            <label for="id_modalidades">
-                <select name="modalidades" id="id_modalidades">
-                    <option value="0" selected> selecione uma modalidade</option>
-                    <optgroup label="esportivas">
-                        <option value="futebol">futebol </option>
-                        <option value="volei">vôlei</option>
-                        <option value="futsal">futsal</option>
-                        <option value="basquete">basquete</option>
-                        <option value="handebol">handebol</option>
-                        <option value="volei_praia">vôlei de praia</option>
-                    </optgroup>
-                    <optgroup label="acadêmicas">
-                        <option value="robotica">robótica</option>
-                        <option value="matematica">matemática</option>
-                        <option value="linguagens">linguagens (português, espanhol...)</option>
-                        <option value="humanas">ciências humanas (história, geografia...)</option>
-                        <option value="biologia">biologia</option>
-                        <option value="fisica">física</option>
-                        <option value="quimica">química</option>
-                    </optgroup>
-                </select>
-            </label>
-
-            <button type="submit" name="cadastro" id="id_cadastro">cadastrar competição</button>
-            <button type="reset" name="limpar" id="id_limpar">limpar</button>
-
-            <br>
+   <form id="formulario_competicao">
+       <fieldset>
 
 
-        </fieldset>
-    </form>
+           <legend>registro de torneios</legend>
 
-    <br>
 
-    <button name="consulta_competicao" id="id_consulta_competicao">ver competições cadastradas</button>
+           <label for="id_competicao">
+               <input
+               type="text"
+               name="competicao"
+               id="id_competicao"
+               minlength="2"
+               required
+               >
+           </label>
 
-    <br>
 
-    <p id="resultado_consulta_competicao"></p>
+           <label for="id_data">
+               <input
+               type="date"
+               name="data"
+               id="id_data"
+               min="01-01-2000"
+               max="01-01-2100"
+               required
+               >
+           </label>
 
-    <br>
 
-    <dialog id="editar_competicao">
+           <label for="id_modalidades">
+               <select name="modalidades" id="id_modalidades">
+                   <option value="0" selected> selecione uma modalidade</option>
+                   <optgroup label="esportivas">
+                       <option value="futebol">futebol </option>
+                       <option value="volei">vôlei</option>
+                       <option value="futsal">futsal</option>
+                       <option value="basquete">basquete</option>
+                       <option value="handebol">handebol</option>
+                       <option value="volei_praia">vôlei de praia</option>
+                   </optgroup>
+                   <optgroup label="acadêmicas">
+                       <option value="robotica">robótica</option>
+                       <option value="matematica">matemática</option>
+                       <option value="linguagens">linguagens (português, espanhol...)</option>
+                       <option value="humanas">ciências humanas (história, geografia...)</option>
+                       <option value="biologia">biologia</option>
+                       <option value="fisica">física</option>
+                       <option value="quimica">química</option>
+                   </optgroup>
+               </select>
+           </label>
 
-        <form>
 
-        <fieldset>
+           <button type="submit" name="cadastro" id="id_cadastro">cadastrar competição</button>
+           <button type="reset" name="limpar" id="id_limpar">limpar</button>
 
-            <legend>editar torneio</legend>
 
-            <label for="id_recad_competicao">
-                <input 
-                type="text" 
-                name="competicao" 
-                id="id_recad_competicao"
-                minlength="2"
-                >
-            </label>
-
-            <label for="id_recad_data">
-                <input 
-                type="date"
-                name="data"
-                id="id_recad_data"
-                min="01-01-2000"
-                max="01-01-2100"
-                >
-            </label>
-
-            <label for="id_recad_modalidades">
-                <select name="modalidades" id="id_recad_modalidades">
-                    <option value="0" selected> selecione uma modalidade</option>
-                    <optgroup label="esportivas">
-                        <option value="futebol">futebol </option>
-                        <option value="volei">vôlei</option>
-                        <option value="futsal">futsal</option>
-                        <option value="basquete">basquete</option>
-                        <option value="handebol">handebol</option>
-                        <option value="volei_praia">vôlei de praia</option>
-                    </optgroup>
-                    <optgroup label="acadêmicas">
-                        <option value="robotica">robótica</option>
-                        <option value="matematica">matemática</option>
-                        <option value="linguagens">linguagens (português, espanhol...)</option>
-                        <option value="humanas">ciências humanas (história, geografia...)</option>
-                        <option value="biologia">biologia</option>
-                        <option value="fisica">física</option>
-                        <option value="quimica">química</option>
-                    </optgroup>
-                </select>
-            </label>
-
-            <button type="submit" name="subir_mudancas" id="subir_mudancas_comp">salvar mudanças</button>
-            <button name="excluir" id="excluir_competicao">excluir competição</button>
-            <button type="reset" name="limpar" id="limpar_mudancas_comp">limpar</button>
-            <button name="fechar_dialog" id="fechar_editor_competicao">fechar</button>
-
-        </form>
-
-    </dialog>
+           <br>
 
 
 
 
-    <script src="scriptCadastro.js" type="module"></script>
+       </fieldset>
+   </form>
+
+
+   <br>
+
+
+   <button name="consulta_competicao" id="id_consulta_competicao">ver competições cadastradas</button>
+
+
+   <br>
+
+
+   <p id="resultado_consulta_competicao"></p>
+
+
+   <br>
+
+
+   <dialog id="editar_competicao">
+
+
+       <form>
+
+
+       <fieldset>
+
+
+           <legend>editar torneio</legend>
+
+
+           <label for="id_recad_competicao">
+               <input
+               type="text"
+               name="competicao"
+               id="id_recad_competicao"
+               minlength="2"
+               >
+           </label>
+
+
+           <label for="id_recad_data">
+               <input
+               type="date"
+               name="data"
+               id="id_recad_data"
+               min="01-01-2000"
+               max="01-01-2100"
+               >
+           </label>
+
+
+           <label for="id_recad_modalidades">
+               <select name="modalidades" id="id_recad_modalidades">
+                   <option value="0" selected> selecione uma modalidade</option>
+                   <optgroup label="esportivas">
+                       <option value="futebol">futebol </option>
+                       <option value="volei">vôlei</option>
+                       <option value="futsal">futsal</option>
+                       <option value="basquete">basquete</option>
+                       <option value="handebol">handebol</option>
+                       <option value="volei_praia">vôlei de praia</option>
+                   </optgroup>
+                   <optgroup label="acadêmicas">
+                       <option value="robotica">robótica</option>
+                       <option value="matematica">matemática</option>
+                       <option value="linguagens">linguagens (português, espanhol...)</option>
+                       <option value="humanas">ciências humanas (história, geografia...)</option>
+                       <option value="biologia">biologia</option>
+                       <option value="fisica">física</option>
+                       <option value="quimica">química</option>
+                   </optgroup>
+               </select>
+           </label>
+
+
+           <button type="submit" name="subir_mudancas" id="subir_mudancas_comp">salvar mudanças</button>
+           <button name="excluir" id="excluir_competicao">excluir competição</button>
+           <button type="reset" name="limpar" id="limpar_mudancas_comp">limpar</button>
+           <button name="fechar_dialog" id="fechar_editor_competicao">fechar</button>
+
+
+       </form>
+
+
+   </dialog>
+
+
+
+
+
+
+
+
+   <script src="scriptCadastro.js" type="module"></script>
 </body>
 </html>
+
